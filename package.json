@@ -1,6 +1,6 @@
 {
   "name": "@demi-valerith/gsc-opportunity-analyzer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Find striking-distance queries, CTR gaps, rising demand, decay, and page opportunities in Google Search Console CSV exports.",
   "type": "module",
   "main": "./src/index.mjs",
