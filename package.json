@@ -1,0 +1,44 @@
+{
+  "name": "gsc-opportunity-analyzer",
+  "version": "1.0.0",
+  "description": "Find striking-distance queries, CTR gaps, rising demand, decay, and page opportunities in Google Search Console CSV exports.",
+  "type": "module",
+  "bin": {
+    "gsc-opportunity": "./bin/gsc-opportunity.mjs"
+  },
+  "exports": {
+    ".": "./src/index.mjs"
+  },
+  "files": [
+    "action",
+    "bin",
+    "src",
+    "action.yml",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "check": "node --check src/csv.mjs && node --check src/engine.mjs && node --check src/format.mjs && node --check src/index.mjs && node --check bin/gsc-opportunity.mjs && node --check action/index.mjs",
+    "test": "node --test"
+  },
+  "keywords": [
+    "google-search-console",
+    "gsc",
+    "seo",
+    "github-action",
+    "csv"
+  ],
+  "author": "Demi Valerith",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/demi-valerith/gsc-opportunity-analyzer.git"
+  },
+  "homepage": "https://seoreportkit.com/tools/gsc-opportunity-analysis/",
+  "bugs": {
+    "url": "https://github.com/demi-valerith/gsc-opportunity-analyzer/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

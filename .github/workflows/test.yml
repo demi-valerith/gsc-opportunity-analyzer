@@ -1,0 +1,36 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm test
+      - run: npm run check
+      - name: Exercise the action locally
+        id: analyze
+        uses: ./
+        with:
+          current: test/fixtures/current.csv
+          previous: test/fixtures/previous.csv
+          pages: test/fixtures/pages.csv
+          format: json
+          output: test-output.json
+      - name: Verify action output
+        env:
+          FINDING_COUNT: ${{ steps.analyze.outputs.finding-count }}
+        run: |
+          test "$FINDING_COUNT" -gt 0
+          node -e 'const fs=require("fs");const x=JSON.parse(fs.readFileSync("test-output.json"));if(x.findingCount<1)process.exit(1)'

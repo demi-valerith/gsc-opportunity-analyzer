@@ -1,0 +1,40 @@
+name: GSC Opportunity Analyzer
+description: Rank evidence-backed SEO opportunities from Google Search Console CSV exports without uploading query data
+author: Demi Valerith
+branding:
+  icon: bar-chart-2
+  color: blue
+inputs:
+  current:
+    description: Path to the current-period GSC Queries CSV
+    required: true
+  previous:
+    description: Path to an equal-length prior-period GSC Queries CSV
+    required: false
+  pages:
+    description: Path to the current-period GSC Pages CSV using the same filters
+    required: false
+  minimum-impressions:
+    description: Minimum impressions required before evaluating a query
+    required: false
+    default: "20"
+  range:
+    description: Striking-distance average-position range
+    required: false
+    default: 8-20
+  format:
+    description: Output format (markdown, json, or csv)
+    required: false
+    default: markdown
+  output:
+    description: Output file path
+    required: false
+    default: gsc-opportunities.md
+outputs:
+  finding-count:
+    description: Number of matched findings
+  output-file:
+    description: Path to the generated evidence ledger
+runs:
+  using: node20
+  main: action/index.mjs
