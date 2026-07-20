@@ -1,21 +1,32 @@
 {
-  "name": "gsc-opportunity-analyzer",
+  "name": "@demi-valerith/gsc-opportunity-analyzer",
   "version": "1.0.0",
   "description": "Find striking-distance queries, CTR gaps, rising demand, decay, and page opportunities in Google Search Console CSV exports.",
   "type": "module",
+  "main": "./src/index.mjs",
+  "types": "./src/index.d.ts",
   "bin": {
     "gsc-opportunity": "./bin/gsc-opportunity.mjs"
   },
   "exports": {
-    ".": "./src/index.mjs"
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.mjs",
+      "default": "./src/index.mjs"
+    }
   },
   "files": [
-    "action",
-    "bin",
-    "src",
     "action.yml",
+    "action/index.mjs",
+    "bin/gsc-opportunity.mjs",
+    "src/csv.mjs",
+    "src/engine.mjs",
+    "src/format.mjs",
+    "src/index.d.ts",
+    "src/index.mjs",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "SECURITY.md"
   ],
   "scripts": {
     "check": "node --check src/csv.mjs && node --check src/engine.mjs && node --check src/format.mjs && node --check src/index.mjs && node --check bin/gsc-opportunity.mjs && node --check action/index.mjs",
@@ -40,5 +51,9 @@
   },
   "engines": {
     "node": ">=20"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
   }
 }

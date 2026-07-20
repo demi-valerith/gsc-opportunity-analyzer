@@ -50,7 +50,34 @@ Outputs are `finding-count` and `output-file`.
 
 ## Command line
 
-Node.js 20 or newer is required. Run without installing:
+Node.js 20 or newer is required. Install the public npm package:
+
+```bash
+npm install --save-dev @demi-valerith/gsc-opportunity-analyzer
+```
+
+Then run the packaged CLI:
+
+```bash
+npx gsc-opportunity current-queries.csv \
+  --previous previous-queries.csv \
+  --pages current-pages.csv \
+  --format markdown \
+  --output gsc-opportunities.md
+```
+
+The analysis API is also available to ESM projects and includes TypeScript declarations:
+
+```js
+import { analyzeFiles } from "@demi-valerith/gsc-opportunity-analyzer";
+
+const findings = await analyzeFiles({
+  currentPath: "current-queries.csv",
+  previousPath: "previous-queries.csv",
+});
+```
+
+Run directly from GitHub without installing:
 
 ```bash
 npx github:demi-valerith/gsc-opportunity-analyzer current-queries.csv \
