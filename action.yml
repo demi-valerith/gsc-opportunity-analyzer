@@ -36,5 +36,5 @@ outputs:
   output-file:
     description: Path to the generated evidence ledger
 runs:
-  using: node20
+  using: node24
   main: action/index.mjs
